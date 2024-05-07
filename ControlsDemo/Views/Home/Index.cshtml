@@ -1,0 +1,39 @@
+﻿@model MijViewModel
+@{
+	if (Model.SelectedDepartmentId != 0)
+	{
+		<h3>Geselecteerde Department Id : @Model.SelectedDepartmentId</h3>
+		<h3>Geselecteerde Department Text : @Model.SelectedDepartmentText</h3>
+		
+	}
+}
+
+@{
+	if(Model.SelectedCatId != 0)
+	{
+		<h3>Geselecteerde Cat Id : @Model.SelectedCatId</h3>
+		<h3>Geselecteerde Cat Text : @Model.SelectedCatText</h3>
+		if(ViewBag.IsActive != null)
+		{ <div>@ViewBag.IsCatActive</div>}
+		
+	}
+}
+<form asp-action="SubmitForm">
+	<div class="form-group">
+		<select class="form-control" asp-for="@Model.SelectedDepartmentId" asp-items="@Model.DepartmentItems">
+			<option value="">Select Department</option>
+		</select>
+		<span asp-validation-for="@Model.SelectedDepartmentId" class="text-danger"></span>
+		<select asp-for="SelectedCatId" asp-items="Model.CatItems">
+			<option value="">Select Category</option>
+		</select>
+		<span asp-validation-for="@Model.SelectedCatId" class="text-danger"></span>
+	</div>
+	<div>
+		<input asp-for="Cat.IsActive" type="checkbox"/>
+		<label asp-for="Cat.IsActive"></label>
+	</div>
+	<button type="submit" class="btn btn-info">Submit</button>
+</form>
+
+
